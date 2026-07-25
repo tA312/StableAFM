@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: >-
+  If you use StableAFM in your research, please cite the associated paper and
+  this software. The paper citation will be added when its bibliographic
+  metadata is available.
+title: StableAFM
+type: software
+authors:
+  - family-names: tA312
+repository-code: "https://github.com/tA312/StableAFM"
+url: "https://github.com/tA312/StableAFM"
+license: Apache-2.0
+version: 0.0.0
+date-released: 2026-07-25
+abstract: >-
+  A physics-guided generative diffusion model for super-resolution atomic
+  force microscopy of trap dynamic behavior.
+keywords:
+  - atomic force microscopy
+  - AFM
+  - super-resolution
+  - diffusion model
+  - physics-guided machine learning
