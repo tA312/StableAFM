@@ -7,13 +7,10 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
 StableAFM is the model accompanying the paper **“A Physics-Guided Generative
-Diffusion Model for Super-Resolution AFM of Trap Dynamic Behavior.”** The
-project studies physics-guided generative modeling for super-resolution
-reconstruction of atomic force microscopy (AFM) observations of trap dynamics.
+Diffusion Model for Super-Resolution AFM of Trap Dynamic Behavior.”**
 
 StableAFM 是论文 **《A Physics-Guided Generative Diffusion Model for
-Super-Resolution AFM of Trap Dynamic Behavior》** 对应的开源项目，研究面向陷阱
-动态行为的原子力显微镜（AFM）超分辨率重建。
+Super-Resolution AFM of Trap Dynamic Behavior》** 对应的开源项目。
 
 ## Project status
 
