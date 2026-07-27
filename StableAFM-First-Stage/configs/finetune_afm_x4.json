@@ -1,0 +1,99 @@
+{
+  "task": "finetune",
+  "model": "plain",
+  "gpu_ids": [0, 1, 2, 3, 4, 5, 6],
+  "dist": true,
+
+  "scale": 4,
+  "n_channels": 1,
+
+  "path": {
+    "root": "../experiments",
+    "pretrained_netG": "../checkpoints/pretrained_E.pth",
+    "pretrained_netE": "../checkpoints/pretrained_E.pth",
+    "pretrained_optimizerG": null
+  },
+
+  "datasets": {
+    "train": {
+      "name": "train",
+      "dataset_type": "sr_decimation",
+      "image_manifest": "../manifests/train.csv",
+      "dataroot_H": null,
+      "dataroot_L": null,
+      "blur_prob": 0.0,
+      "blur_sigma": [0.5, 1.5],
+      "preserve_decimation_phase": true,
+      "lr_noise_std": 0.0,
+      "lr_mask_prob": 0.0,
+      "lr_mask_noise_std": 0.0,
+      "H_size": 192,
+      "dataloader_shuffle": true,
+      "dataloader_num_workers": 56,
+      "dataloader_batch_size": 56,
+      "dataloader_persistent_workers": true,
+      "dataloader_seed": 2031
+    },
+    "test": {
+      "name": "val",
+      "dataset_type": "sr_decimation",
+      "image_manifest": "../manifests/val.csv",
+      "dataroot_H": null,
+      "dataroot_L": null,
+      "blur_prob": 0.0,
+      "blur_sigma": [0.5, 1.5],
+      "preserve_decimation_phase": true,
+      "H_size": 192
+    }
+  },
+
+  "evaluation": {
+    "val_manifest": "../manifests/val.csv",
+    "test_manifest": "../manifests/test.csv"
+  },
+
+  "netG": {
+    "net_type": "swinir",
+    "upscale": 4,
+    "in_chans": 1,
+    "img_size": 48,
+    "window_size": 8,
+    "img_range": 1.0,
+    "depths": [6, 6, 6, 6, 6, 6],
+    "embed_dim": 180,
+    "num_heads": [6, 6, 6, 6, 6, 6],
+    "mlp_ratio": 2,
+    "upsampler": "bilinear+conv-residual",
+    "resi_connection": "1conv",
+    "init_type": "default"
+  },
+
+  "train": {
+    "manual_seed": 2031,
+    "G_lossfn_type": "l1",
+    "G_lossfn_weight": 1.0,
+    "E_decay": 0.999,
+    "test_use_ema": true,
+
+    "G_optimizer_type": "adam",
+    "G_optimizer_lr": 0.00001,
+    "G_optimizer_betas": [0.9, 0.999],
+    "G_optimizer_wd": 0,
+    "G_optimizer_reuse": true,
+
+    "G_scheduler_type": "MultiStepLR",
+    "G_scheduler_milestones": [4000, 7000, 9000],
+    "G_scheduler_gamma": 0.5,
+
+    "G_param_strict": true,
+    "E_param_strict": true,
+    "total_iter": 10000,
+    "early_stop_patience": 0,
+    "early_stop_min_delta": 0.0,
+    "save_test_images": false,
+
+    "checkpoint_test": 500,
+    "checkpoint_save": 1000,
+    "checkpoint_print": 100
+  }
+}

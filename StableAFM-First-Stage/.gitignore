@@ -1,0 +1,17 @@
+/KAIR/
+/checkpoints/*
+/datasets/
+/experiments/
+/manifests/
+/output/
+/results/
+*.ckpt
+*.pt
+*.pth
+*.npy
+*.npz
+*.original
+__pycache__/
+*.py[cod]
+
+!/checkpoints/StableAFM-firststage-AFM-SwinIR.pth
