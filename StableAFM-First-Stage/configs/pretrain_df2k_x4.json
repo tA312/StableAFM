@@ -1,0 +1,87 @@
+{
+  "task": "pretrain",
+  "model": "plain",
+  "gpu_ids": [0, 1, 2, 3, 4, 5, 6],
+  "dist": true,
+
+  "scale": 4,
+  "n_channels": 1,
+
+  "path": {
+    "root": "../experiments",
+    "pretrained_netG": null,
+    "pretrained_netE": null
+  },
+
+  "datasets": {
+    "train": {
+      "name": "train",
+      "dataset_type": "sr_decimation",
+      "dataroot_H": "../datasets/DF2K/train/DF2K_train_HR",
+      "dataroot_L": null,
+      "blur_prob": 0.0,
+      "blur_sigma": [0.5, 1.5],
+      "preserve_decimation_phase": true,
+      "H_size": 192,
+      "dataloader_shuffle": true,
+      "dataloader_num_workers": 56,
+      "dataloader_batch_size": 56,
+      "dataloader_persistent_workers": true,
+      "dataloader_seed": 2026
+    },
+    "test": {
+      "name": "val",
+      "dataset_type": "sr_decimation",
+      "dataroot_H": "../datasets/DF2K/val/DF2K_valid_HR",
+      "dataroot_L": null,
+      "blur_prob": 0.0,
+      "blur_sigma": [0.5, 1.5],
+      "preserve_decimation_phase": true,
+      "max_images": 20
+    }
+  },
+
+  "netG": {
+    "net_type": "swinir",
+    "upscale": 4,
+    "in_chans": 1,
+    "img_size": 48,
+    "window_size": 8,
+    "img_range": 1.0,
+    "depths": [6, 6, 6, 6, 6, 6],
+    "embed_dim": 180,
+    "num_heads": [6, 6, 6, 6, 6, 6],
+    "mlp_ratio": 2,
+    "upsampler": "bilinear+conv-residual",
+    "resi_connection": "1conv",
+    "init_type": "default"
+  },
+
+  "train": {
+    "manual_seed": 2026,
+    "G_lossfn_type": "l1",
+    "G_lossfn_weight": 1.0,
+    "E_decay": 0.999,
+    "test_use_ema": true,
+
+    "G_optimizer_type": "adam",
+    "G_optimizer_lr": 0.0002,
+    "G_optimizer_wd": 0,
+    "G_optimizer_reuse": true,
+
+    "G_scheduler_type": "MultiStepLR",
+    "G_scheduler_milestones": [250000, 400000, 450000, 475000],
+    "G_scheduler_gamma": 0.5,
+
+    "G_param_strict": true,
+    "E_param_strict": true,
+    "total_iter": 500000,
+    "early_stop_patience": 0,
+    "early_stop_min_delta": 0.0,
+    "save_test_images": false,
+
+    "checkpoint_test": 10000,
+    "checkpoint_save": 10000,
+    "checkpoint_print": 100
+  }
+}

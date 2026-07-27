@@ -1,24 +1,24 @@
 # StableAFM
 
-[中文](README.zh-CN.md) | English
+中文 | [English](README.md)
 
-Official implementation of **“A Physics-Guided Generative Diffusion Model for
-Super-Resolution AFM of Trap Dynamic Behavior.”**
+论文 **《A Physics-Guided Generative Diffusion Model for Super-Resolution AFM
+of Trap Dynamic Behavior》** 的官方实现。
 
-## Repository structure
+## 仓库结构
 
 ```text
 StableAFM/
-├── StableAFM-First-Stage/     # AFM-SwinIR x4 super-resolution
-└── StableAFM-Second-Stage/    # StableAFM diffusion reconstruction
+├── StableAFM-First-Stage/     # AFM-SwinIR x4 超分辨率
+└── StableAFM-Second-Stage/    # StableAFM 扩散重建
 ```
 
-The source is provided as overlays for pinned versions of KAIR and StableSR.
-Install the corresponding upstream environment before running each stage.
+本仓库以覆盖层形式提供基于固定版本 KAIR 和 StableSR 的修改代码。运行每个阶段
+前，请先按照对应上游项目的说明配置环境。
 
-## Stage 1: AFM-SwinIR
+## 第一阶段：AFM-SwinIR
 
-### Setup
+### 安装
 
 ```bash
 cd StableAFM-First-Stage
@@ -27,16 +27,16 @@ git -C KAIR checkout fc1732f4a4514e42ce15e5b3a1e18c828af47a1e
 bash install_overlay.sh
 ```
 
-### Train
+### 训练
 
-Update the dataset paths and runtime settings in `configs/`, then run:
+先在 `configs/` 中修改数据路径和运行参数，然后执行：
 
 ```bash
 bash train.sh configs/pretrain_df2k_x4.json
 bash train.sh configs/finetune_afm_x4.json
 ```
 
-### Inference
+### 推理
 
 ```bash
 python tools/infer_afm.py \
@@ -48,9 +48,9 @@ python tools/infer_afm.py \
   --device cuda:0
 ```
 
-## Stage 2: StableAFM
+## 第二阶段：StableAFM
 
-### Setup
+### 安装
 
 ```bash
 cd ../StableAFM-Second-Stage
@@ -59,16 +59,15 @@ git -C StableSR checkout 398ee9383777e255540ea027a704c8ce1f32145b
 bash install_overlay.sh
 ```
 
-### Train
+### 训练
 
-Update the dataset paths and runtime settings in `configs/train_afm.yaml`, then
-run:
+先在 `configs/train_afm.yaml` 中修改数据路径和运行参数，然后执行：
 
 ```bash
 bash train.sh StableSR configs/stableafm/train_afm.yaml 0,1
 ```
 
-### Inference
+### 推理
 
 ```bash
 cd StableSR
@@ -84,8 +83,8 @@ python scripts/infer_afm.py \
   --init-mode condition
 ```
 
-## Model weights
+## 模型权重
 
-The first-stage inference checkpoint is included at
-`StableAFM-First-Stage/checkpoints/StableAFM-firststage-AFM-SwinIR.pth`.
-The second-stage checkpoint will be provided later through Google Drive.
+第一阶段推理权重位于
+`StableAFM-First-Stage/checkpoints/StableAFM-firststage-AFM-SwinIR.pth`。
+第二阶段权重后续通过 Google Drive 提供。

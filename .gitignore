@@ -37,15 +37,21 @@ secrets.*
 
 # Experiment tracking and outputs
 outputs/
+output/
+results/
 runs/
+experiments/
+lightning_logs/
 wandb/
 mlruns/
 logs/
 work/
+manifests/
 
 # Datasets: keep documentation, not research data
 data/*
 !data/README.md
+datasets/
 
 # Model checkpoints and large numerical artifacts
 checkpoints/
@@ -67,8 +73,17 @@ weights/
 *.jpk
 *.nid
 
+# Overlay checkouts and backups
+KAIR/
+StableSR/
+*.original
+
 # Archives
 *.zip
 *.7z
 *.tar
 *.tar.gz
+
+# Public first-stage inference checkpoint
+!StableAFM-First-Stage/checkpoints/
+!StableAFM-First-Stage/checkpoints/StableAFM-firststage-AFM-SwinIR.pth

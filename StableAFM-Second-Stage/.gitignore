@@ -1,0 +1,15 @@
+/StableSR/
+/checkpoints/
+/datasets/
+/logs/
+/outputs/
+/weights/
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.npy
+*.npz
+*.original
+__pycache__/
+*.py[cod]
