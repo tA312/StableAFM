@@ -87,4 +87,6 @@ python scripts/infer_afm.py \
 
 第一阶段推理权重位于
 `StableAFM-First-Stage/checkpoints/StableAFM-firststage-AFM-SwinIR.pth`。
-第二阶段权重后续通过 Google Drive 提供。
+第二阶段权重
+[`StableAFM-secondstage.ckpt`](https://drive.google.com/file/d/1gh1HJDfuwJiDPnyUvrnKClpKqVcRUNDZ/view?usp=sharing)
+可通过 Google Drive 下载。
