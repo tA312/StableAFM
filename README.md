@@ -88,4 +88,6 @@ python scripts/infer_afm.py \
 
 The first-stage inference checkpoint is included at
 `StableAFM-First-Stage/checkpoints/StableAFM-firststage-AFM-SwinIR.pth`.
-The second-stage checkpoint will be provided later through Google Drive.
+The second-stage checkpoint
+[`StableAFM-secondstage.ckpt`](https://drive.google.com/file/d/1gh1HJDfuwJiDPnyUvrnKClpKqVcRUNDZ/view?usp=sharing)
+is available on Google Drive.
